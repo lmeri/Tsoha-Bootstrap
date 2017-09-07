@@ -2,9 +2,14 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
-* [Linkki dokumentaatiooni](https://www.github.com)
+* [Linkki sovellukseeni](http://lome.users.cs.helsinki.fi/tsoha17/)
+* [Linkki dokumentaatiooni](https://github.com/lmeri/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
 ## Työn aihe
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+Aiheeni on kirjatietokanta. Sovellus mahdollistaa tietokantaan tallennettujen kirjojen ja näiden tietojen katselun, sekä kirjojen selailun esimerkiksi kategorioiden perusteella. Ylläpitäjät voivat lisätä tietokantaan uusia kirjoja, poistaa vanhoja tai muokata kirjojen tietoja, sekä lisätä ja muokata kategorioita. 
+
+Käyttäjät puolestaan voivat arvostella kirjoja. Näiden arvostelujen pohjalta sivuilla näkyy myös top-listoja kirjoista, kuten “luetuimmat” tai “parhaiten arvostellut”. Käyttäjät pystyvät myös selaamaan jo lukemiaan kirjoja.
+
+Järjestelmän tarkoitus on toimia tietokantana kirjoille, sekä auttaa käyttäjiään pysymään kärryillä lukemistaan teoksista ja mahdollisesti löytämään uutta luettavaa.
+
