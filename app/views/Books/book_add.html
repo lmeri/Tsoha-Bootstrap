@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Lisää kirja</h1>
+  <h1>Add a book</h1>
   <p></p>
   <form>
     <div class="form-group">
-      <label>Nimi</label>
+      <label>Name</label>
       <input class="form-control" value="" type="text">
     </div>
       <div class="form-group">
@@ -12,28 +12,28 @@
       <input class="form-control" value="" type="text">
     </div>
     <div class="form-group">
-      <label>Kirjailija</label>
+      <label>Writer</label>
       <input class="form-control" value="" type="text">
     </div>
     <div class="form-group">
-      <label>Julkaisuvuosi</label>
+      <label>Released</label>
       <input class="form-control" value="" type="text">
     </div>
     <div class="form-group">
-      <label>Kuvaus</label>
+      <label>Introduction</label>
       <textarea class="form-control">
       </textarea>
     </div> 
     <div class="form-group">
-      <label>Kategoriat</label>
+      <label>Categories</label>
       <select class="form-control" multiple="">
-          <option>Kategoria 1</option>
-          <option>Kategoria 2</option>
-          <option>Kategoria 3</option>
+          <option>Category 1</option>
+          <option>Category 2</option>
+          <option>Category 3</option>
       </select>
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-success">Tallenna</button>
+      <button type="submit" class="btn btn-success">Save</button>
     </div>
   </form>
 {% endblock %}

@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
   <p>
-    <button class="btn btn-danger pull-right">Poista</button> <a href="{{base_path}}/categories/1/edit" class="btn btn-default pull-right">Muokkaa</a>
-    
+    <button class="btn btn-danger pull-right">Delete</button> <a href="{{base_path}}/categories/1/edit" class="btn btn-default pull-right">Edit</a>
   </p>
   
-  <h1>Kategorian kirjat</h1>
+  <h1>Books in category</h1>
 
 
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>Nimi</th>
-        <th>Kirjailija</th>
-        <th>Julkaisuvuosi</th>
+        <th>Name</th>
+        <th>Writer</th>
+        <th>Released</th>
+        <th>Users' rating</th>
       </tr>
     </thead>
 
@@ -22,6 +22,7 @@
         <td><a href="{{base_path}}/books/1">Testi</a></td>
         <td>McTestinen</td>
         <td>0000</td>
+        <td>3.2</td>
       </tr>
     </tbody>
   </table>
