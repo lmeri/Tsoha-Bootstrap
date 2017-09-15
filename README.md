@@ -13,3 +13,19 @@ Käyttäjät puolestaan voivat arvostella kirjoja. Näiden arvostelujen pohjalta
 
 Järjestelmän tarkoitus on toimia tietokantana kirjoille, sekä auttaa käyttäjiään pysymään kärryillä lukemistaan teoksista ja mahdollisesti löytämään uutta luettavaa.
 
+
+## Sovelluksen linkkejä
+* [Etusivu](http://lome.users.cs.helsinki.fi/tsoha17/)
+* [Login](http://lome.users.cs.helsinki.fi/tsoha17/login)
+* [Rekisteröidy](http://lome.users.cs.helsinki.fi/tsoha17/register)
+* [Kirjojen listaus](http://lome.users.cs.helsinki.fi/tsoha17/books)
+* [Kirjan tiedot](http://lome.users.cs.helsinki.fi/tsoha17/books/1)
+* [Lisää kirja](http://lome.users.cs.helsinki.fi/tsoha17/books/add)
+* [Muokkaa kirjaa](http://lome.users.cs.helsinki.fi/tsoha17/books/edit)
+* [Kategorioiden listaus](http://lome.users.cs.helsinki.fi/tsoha17/books)
+* [Kategorian kirjat](http://lome.users.cs.helsinki.fi/tsoha17/categories/1)
+* [Lisää kategoria](http://lome.users.cs.helsinki.fi/tsoha17/categories/add)
+* [Muokkaa kategoriaa](http://lome.users.cs.helsinki.fi/tsoha17/categories/1/edit)
+* [Käyttäjän lukemat kirjat](http://lome.users.cs.helsinki.fi/tsoha17/user/books)
+* [Top-listat](http://lome.users.cs.helsinki.fi/tsoha17/toplists)
+

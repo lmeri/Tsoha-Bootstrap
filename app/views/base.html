@@ -7,7 +7,7 @@
 
     <title>
       {% block title %}
-        Tietokantasovellus
+        Tietokantasovellus | Kirjatietokanta
       {% endblock %}
     </title>
 
@@ -40,6 +40,21 @@
           <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
             <li><a href="{{base_path}}">Etusivu</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Browse Books 
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/tsoha17/books">List All Books</a></li>
+                    <li><a href="/tsoha17/categories">Show Categories</a></li>
+                    <li><a href="/tsoha17/books/add">Add a Book</a></li>
+                </ul> 
+            </li>
+            <li><a class="nav-link disabled" href="/tsoha17/toplists">TOP lists</a></li>
+          </ul>
+            
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/tsoha17/login">Kirjaudu sisään</a></li>
+            <li><a href="/tsoha17/register">Rekisteröidy</a></li>
           </ul>
         </div>
       </div>
