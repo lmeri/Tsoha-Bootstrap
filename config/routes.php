@@ -1,5 +1,6 @@
 <?php
 
+
   $routes->get('/', function() {
     HelloWorldController::index();
   });
@@ -12,46 +13,61 @@
     HelloWorldController::login();
   });
   
-  $routes->get('/books', function() {
-    HelloWorldController::list_books();
-  });
-  
-  $routes->get('/categories', function() {
-    HelloWorldController::categories();
-  });
-  
-  $routes->get('/books/1', function() {
-    HelloWorldController::book_intro();
-  });
-
   $routes->get('/register', function() {
     HelloWorldController::register();
   });
   
-  $routes->get('/categories/1', function() {
-    HelloWorldController::category_list();
+//Kirja reitit
+
+  $routes->get('/books', function() {
+    BooksController::booklist();
   });
-  
+
   $routes->get('/toplists', function() {
-    HelloWorldController::toplists();
-  });
-  
-  $routes->get('/books/1/edit', function() {
-    HelloWorldController::book_edit();
-  });
-  
-  $routes->get('/categories/1/edit', function() {
-    HelloWorldController::category_edit();
-  });
-  
-  $routes->get('/categories/add', function() {
-    HelloWorldController::category_add();
+    BooksController::bestbooks();
   });
   
   $routes->get('/books/add', function() {
-    HelloWorldController::book_add();
+    BooksController::add();
+  });
+  
+  $routes->get('/books/:id', function($id) {
+      BooksController::bookintro($id);
+  });
+  
+  $routes->get('/books/:id/edit', function($id) {
+    HelloWorldController::book_edit($id);
+  });
+  
+  $routes->post('/books', function(){
+    BooksController::store();
   });
   
   $routes->get('/user/books', function() {
     HelloWorldController::users_books();
   });
+  
+  
+  
+//Kategoria reitit
+  $routes->get('/categories', function() {
+    CategoriesController::categorylist();
+  });
+  
+  $routes->get('/categories/add', function() {
+    CategoriesController::add();
+  });
+  
+  $routes->get('/categories/:id', function($id) {
+    BooksController::categorybooks($id);
+  });
+
+  $routes->get('/categories/:id/edit', function($id) {
+    HelloWorldController::category_edit($id);
+  });
+
+  $routes->post('/categories', function(){
+    CategoriesController::store();
+  });
+  
+  

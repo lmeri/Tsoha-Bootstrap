@@ -56,8 +56,13 @@
     
     
 
-    public static function sandbox(){
-      // Testaa koodiasi täällä
-      View::make('helloworld.html');
+    public static function sandbox(){ 
+      
+        $potter = Kirja::find(1);
+        $kirjat = Kirja::all();
+        // Kint-luokan dump-metodi tulostaa muuttujan arvon
+        Kint::dump($kirjat);
+        Kint::dump($potter);
     }
-  }
+}
+

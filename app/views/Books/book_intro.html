@@ -3,17 +3,21 @@
   <p>
     <button class="btn btn-danger pull-right">Delete</button>  <a href="{{base_path}}/books/1/edit" class="btn btn-default pull-right">Edit</a>
   </p>
-  <h1>Testi</h1>
+  <h1>{{book.nimi}}</h1>
 
   <ul>
-    <li><strong>ISBN:</strong> 1234567891234 </li>  
-    <li><strong>Writer:</strong> McTestinen</li>
-    <li><strong>Released:</strong> 0000</li>
-    <li><strong>Users' rating:</strong> 3.2</li>
-    <li><strong>Your rating:</strong> 4</li>
+    <li><strong>ISBN:</strong> {{book.isbn}} </li>  
+    <li><strong>Writer:</strong> {{book.kirjailija}}</li>
+    <li><strong>Released:</strong> {{book.vuosi}}</li>
+    <li><strong>Users' rating:</strong> {{book.arvostelu}}</li>
+    <li><strong>Book's Categories:</strong> 
+        {% for bc in bookcategories %}
+        {{bc.kategoria_nimi}}
+        {% endfor %}
+    </li>
   </ul>
   <p>
-    Maailman myydyin kirja.
+    {{book.kuvaus}}
   </p>
 
 {% endblock %}
