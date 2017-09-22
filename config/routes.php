@@ -44,7 +44,11 @@
   });
   
   $routes->get('/user/books', function() {
-    HelloWorldController::users_books();
+      UsersBooksController::usersbooks(1);
+  });
+  
+  $routes->post('/books/:id', function($id){
+    RatingController::store($id);
   });
   
   

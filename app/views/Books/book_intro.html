@@ -19,5 +19,14 @@
   <p>
     {{book.kuvaus}}
   </p>
-
+  <p style="margin-top:50px">
+  <h3>Rate this book!</h3>
+      <form method="post" action="{{base_path}}/books/{{book.id}}" class="form-inline">
+        <div class="form-group">
+            <input name="rating" class="form-control" value="" type="number" min="1" max="5">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Rate!</button>
+        </div>
+        </form>
 {% endblock %}

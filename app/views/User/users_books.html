@@ -8,16 +8,18 @@
       <tr>
         <th>Name</th>
         <th>Writer</th>
-        <th>Your rating</th>
+        <th>Released</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr>
-        <td>Testi</td>
-        <td>McTestinen</td>
-        <td>4</td>
+      {% for book in books %}
+      <tr> 
+        <td><a href="{{base_path}}/books/{{book.id}}">{{book.nimi}}</a></td>
+        <td>{{book.kirjailija}}</td>
+        <td>{{book.vuosi}}</td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 {% endblock %}

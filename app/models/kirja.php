@@ -22,7 +22,7 @@ class Kirja extends BaseModel{
                 'kirjailija' => $row['kirjailija'],
                 'vuosi' => $row['vuosi'],
                 'kuvaus' => $row['kuvaus'],
-                'arvostelu' => $row['arvostelu']
+                'arvostelu' => number_format($row['arvostelu'], 1)
             ));
         }
         return $books;
@@ -42,7 +42,7 @@ class Kirja extends BaseModel{
                 'kirjailija' => $row['kirjailija'],
                 'vuosi' => $row['vuosi'],
                 'kuvaus' => $row['kuvaus'],
-                'arvostelu' => $row['arvostelu']
+                'arvostelu' => number_format($row['arvostelu'], 1)
             ));
         return $book;
         }
@@ -50,7 +50,7 @@ class Kirja extends BaseModel{
     }
     
     public static function findFromCategory($id){
-        $query = DB::connection()->prepare('SELECT Kirja.*, AVG(Arvostelu.arvostelu) AS arvostelu FROM Kirja LEFT JOIN Arvostelu ON Kirja.id=Arvostelu.kirja_id LEFT JOIN KirjaKategoria ON Kirja.id=KirjaKategoria.kirja_id WHERE KirjaKategoria.kategoria_id  = :id GROUP BY Kirja.id ORDER BY arvostelu DESC');
+        $query = DB::connection()->prepare('SELECT Kirja.*, AVG(Arvostelu.arvostelu) AS arvostelu FROM Kirja LEFT JOIN Arvostelu ON Kirja.id=Arvostelu.kirja_id LEFT JOIN KirjaKategoria ON Kirja.id=KirjaKategoria.kirja_id WHERE KirjaKategoria.kategoria_id  = :id GROUP BY Kirja.id ORDER BY Kirja.nimi ASC');
         $query->execute(array('id' => $id));
         $rows = $query->fetchAll();
         $books = array();
@@ -63,7 +63,26 @@ class Kirja extends BaseModel{
                 'kirjailija' => $row['kirjailija'],
                 'vuosi' => $row['vuosi'],
                 'kuvaus' => $row['kuvaus'],
-                'arvostelu' => $row['arvostelu']
+                'arvostelu' => number_format($row['arvostelu'], 1)
+            ));
+        }
+        return $books;   
+    }
+    
+    public static function findUsersBooks($id){
+        $query = DB::connection()->prepare('SELECT Kirja.* FROM Kirja INNER JOIN Arvostelu ON Kirja.id=Arvostelu.kirja_id WHERE Arvostelu.kayttaja_id = :id GROUP BY Kirja.id');
+        $query->execute(array('id' => $id));
+        $rows = $query->fetchAll();
+        $books = array();
+        
+        foreach ($rows as $row){
+            $books[] = new Kirja(array(
+                'id' => $row['id'],
+                'isbn' => $row['isbn'],
+                'nimi' => $row['nimi'],
+                'kirjailija' => $row['kirjailija'],
+                'vuosi' => $row['vuosi'],
+                'kuvaus' => $row['kuvaus']
             ));
         }
         return $books;   
@@ -83,7 +102,7 @@ class Kirja extends BaseModel{
                 'kirjailija' => $row['kirjailija'],
                 'vuosi' => $row['vuosi'],
                 'kuvaus' => $row['kuvaus'],
-                'arvostelu' => $row['arvostelu']
+                'arvostelu' => number_format($row['arvostelu'], 1)
             ));
         }
         return $books;   
