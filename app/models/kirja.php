@@ -89,7 +89,7 @@ class Kirja extends BaseModel{
     }
     
     public static function bestRated(){
-        $query = DB::connection()->prepare('SELECT Kirja.*, AVG(Arvostelu.arvostelu) AS arvostelu FROM Kirja LEFT JOIN Arvostelu ON Kirja.id=Arvostelu.kirja_id GROUP BY Kirja.id ORDER BY arvostelu DESC');
+        $query = DB::connection()->prepare('SELECT Kirja.*, AVG(Arvostelu.arvostelu) AS arvostelu FROM Kirja LEFT JOIN Arvostelu ON Kirja.id=Arvostelu.kirja_id GROUP BY Kirja.id ORDER BY arvostelu DESC NULLS LAST');
         $query->execute();
         $rows = $query->fetchAll();
         $books = array();
