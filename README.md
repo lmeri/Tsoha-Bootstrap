@@ -29,3 +29,6 @@ Järjestelmän tarkoitus on toimia tietokantana kirjoille, sekä auttaa käyttä
 * [Käyttäjän lukemat kirjat](http://lome.users.cs.helsinki.fi/tsoha17/user/books)
 * [Top-lista](http://lome.users.cs.helsinki.fi/tsoha17/toplists)
 
+
+## Sovelluksesta
+* [Käytetyt kansikuvat](https://openlibrary.org/dev/docs/api/covers)

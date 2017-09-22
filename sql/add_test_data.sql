@@ -11,6 +11,7 @@ INSERT INTO Kirja(isbn, nimi, kirjailija, vuosi, kuvaus) VALUES ('1234567845324'
 -- Kategoria
 INSERT INTO Kategoria(nimi) VALUES ('Seikkailu');
 INSERT INTO Kategoria(nimi) VALUES ('Kauhu');
+INSERT INTO Kategoria(nimi) VALUES ('Fantasia');
 
 -- KirjaKategoria
 INSERT INTO KirjaKategoria(kategoria_id, kirja_id) VALUES (1, 1);
