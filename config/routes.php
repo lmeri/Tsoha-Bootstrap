@@ -9,8 +9,12 @@
     HelloWorldController::sandbox();
   });
   
+  $routes->post('/login', function() {
+    UserController::handle_login();
+  });
+  
   $routes->get('/login', function() {
-    HelloWorldController::login();
+    UserController::login();
   });
   
   $routes->get('/register', function() {
@@ -31,25 +35,37 @@
     BooksController::add();
   });
   
+  $routes->post('/books/:id/destroy', function($id){
+    BooksController::destroy($id);
+  });
+  
+  $routes->post('/books/:id/edit', function($id) {
+      BooksController::update($id);
+  });
+  
+  $routes->get('/books/:id/edit', function($id) {
+      BooksController::edit($id);
+  });
+  
   $routes->get('/books/:id', function($id) {
       BooksController::bookintro($id);
   });
   
-  $routes->get('/books/:id/edit', function($id) {
-    HelloWorldController::book_edit($id);
-  });
-  
   $routes->post('/books', function(){
-    BooksController::store();
+      BooksController::store();
   });
   
   $routes->get('/user/books', function() {
-      UsersBooksController::usersbooks(1);
+      UserController::usersbooks();
   });
+  
+  
   
   $routes->post('/books/:id', function($id){
     RatingController::store($id);
   });
+  
+  
   
   
   
@@ -62,12 +78,20 @@
     CategoriesController::add();
   });
   
-  $routes->get('/categories/:id', function($id) {
-    BooksController::categorybooks($id);
+  $routes->post('/categories/:id/destroy', function($id){
+    CategoriesController::destroy($id);
+  });
+  
+  $routes->post('/categories/:id/edit', function($id) {
+      CategoriesController::update($id);
   });
 
   $routes->get('/categories/:id/edit', function($id) {
-    HelloWorldController::category_edit($id);
+      CategoriesController::edit($id);
+  });
+  
+  $routes->get('/categories/:id', function($id) {
+    BooksController::categorybooks($id);
   });
 
   $routes->post('/categories', function(){

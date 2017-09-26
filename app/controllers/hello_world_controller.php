@@ -57,12 +57,15 @@
     
 
     public static function sandbox(){ 
-      
-        $potter = Kirja::find(1);
-        $kirjat = Kirja::all();
-        // Kint-luokan dump-metodi tulostaa muuttujan arvon
-        Kint::dump($kirjat);
-        Kint::dump($potter);
+        $doom = new Kirja(array(
+        'name' => 'd',
+        'published' => 'eilen',
+        'publisher' => 'id Software',
+        'description' => 'Boom, boom!'
+        ));
+        $errors = $doom->errors();
+
+        Kint::dump($errors);
     }
 }
 

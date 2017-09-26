@@ -5,6 +5,7 @@ class RatingController extends BaseController{
     public static function store($id) {
         $params = $_POST;
         $book = $id;
+        $kayttaja_id = self::get_user_logged_in()->id;
         
         $rating = new Arvostelu(array(
         'kirja_id' => $book,

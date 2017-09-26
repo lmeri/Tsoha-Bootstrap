@@ -6,6 +6,7 @@ class Kategoria extends BaseModel{
     
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_category');
     }
     
     public static function all(){
@@ -46,6 +47,18 @@ class Kategoria extends BaseModel{
         $row = $query->fetch();
         $this->id = $row['id'];
          
+    }
+    
+    public function destroy(){
+        $query = DB::connection()->prepare('DELETE FROM KirjaKategoria WHERE kategoria_id = :id');
+        $query->execute(array('id' => $this->id));
+        $query = DB::connection()->prepare('DELETE FROM Kategoria WHERE id = :id');
+        $query->execute(array('id' => $this->id));
+    }
+    
+    public function update($id){
+        $query = DB::connection()->prepare('UPDATE Kategoria SET nimi = :nimi WHERE id = :id');
+        $query->execute(array('nimi' => $this->nimi, 'id' => $id)); 
     }
     
 }

@@ -6,6 +6,7 @@ class Kirja extends BaseModel{
     
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_name', 'validate_isbn', 'validate_writer', 'validate_year', 'validate_description');
     }
     
     public static function all(){
@@ -114,6 +115,20 @@ class Kirja extends BaseModel{
         $row = $query->fetch();
         $this->id = $row['id'];
          
+    }
+    
+    public function destroy(){
+        $query = DB::connection()->prepare('DELETE FROM Arvostelu WHERE kirja_id = :id');
+        $query->execute(array('id' => $this->id));
+        $query = DB::connection()->prepare('DELETE FROM KirjaKategoria WHERE kirja_id = :id');
+        $query->execute(array('id' => $this->id));
+        $query = DB::connection()->prepare('DELETE FROM Kirja WHERE id = :id');
+        $query->execute(array('id' => $this->id));
+    }
+    
+    public function update($id){
+        $query = DB::connection()->prepare('UPDATE Kirja SET nimi = :nimi, isbn = :isbn, kirjailija = :kirjailija, vuosi = :vuosi, kuvaus = :kuvaus WHERE id = :id');
+        $query->execute(array('nimi' => $this->nimi, 'isbn' => $this->isbn, 'kirjailija' => $this->kirjailija, 'vuosi' => $this->vuosi, 'kuvaus' => $this->kuvaus, 'id' => $id)); 
     }
     
     

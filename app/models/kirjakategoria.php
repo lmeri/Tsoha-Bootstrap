@@ -32,4 +32,10 @@ class KirjaKategoria extends BaseModel{
         }
         return $categories;
     }
+    
+    public static function destroy($id){
+        $query = DB::connection()->prepare('DELETE FROM KirjaKategoria WHERE kirja_id = :id');
+        $query->execute(array('id' => $id));
+    }
+    
 }

@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+{% if user_logged_in.adminko %}
   <p>
-    <button class="btn btn-danger pull-right">Delete</button> <a href="{{base_path}}/categories/1/edit" class="btn btn-default pull-right">Edit</a>
-  </p>
+    <form method="post" action="{{base_path}}/categories/{{category.id}}/destroy" style="margin: 2% 2% 2% 2%">
+        <button type="submit" class="btn btn-danger pull-right">Delete</button>
+    </form>
+  <a href="{{base_path}}/categories/{{category.id}}/edit" class="btn btn-default pull-right">Edit</a>
+{% endif %}
   
   <h1>{{category.nimi}}</h1>
 
