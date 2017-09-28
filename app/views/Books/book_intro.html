@@ -27,6 +27,7 @@
     {{book.kuvaus}}
   </p>
   <p style="margin-top:50px">
+  {% if user_logged_in %}
   <h3>Rate this book!</h3>
       <form method="post" action="{{base_path}}/books/{{book.id}}" class="form-inline">
         <div class="form-group">
@@ -36,4 +37,5 @@
             <button type="submit" class="btn btn-success">Rate!</button>
         </div>
         </form>
+  {% endif %}
 {% endblock %}
