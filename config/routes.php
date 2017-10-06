@@ -44,23 +44,23 @@
   });
   
   $routes->post('/books/:id/edit', function($id) {
-      BooksController::update($id);
+    BooksController::update($id);
   });
   
   $routes->get('/books/:id/edit', function($id) {
-      BooksController::edit($id);
+    BooksController::edit($id);
   });
   
   $routes->get('/books/:id', function($id) {
-      BooksController::bookintro($id);
+    BooksController::bookintro($id);
   });
   
   $routes->post('/books', function(){
-      BooksController::store();
+    BooksController::store();
   });
   
   $routes->get('/user/books', function() {
-      UserController::usersbooks();
+    UserController::usersbooks();
   });
   
   
@@ -87,11 +87,11 @@
   });
   
   $routes->post('/categories/:id/edit', function($id) {
-      CategoriesController::update($id);
+    CategoriesController::update($id);
   });
 
   $routes->get('/categories/:id/edit', function($id) {
-      CategoriesController::edit($id);
+    CategoriesController::edit($id);
   });
   
   $routes->get('/categories/:id', function($id) {

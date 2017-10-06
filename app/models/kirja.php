@@ -9,6 +9,7 @@ class Kirja extends BaseModel{
         $this->validators = array('validate_name', 'validate_isbn', 'validate_writer', 'validate_year', 'validate_description');
     }
     
+    //Kaikki kirjat
     public static function all(){
         $query = DB::connection()->prepare('SELECT Kirja.*, AVG(Arvostelu.arvostelu) AS arvostelu FROM Kirja LEFT JOIN Arvostelu ON Kirja.id=Arvostelu.kirja_id GROUP BY Kirja.id ORDER BY Kirja.nimi ASC');
         $query->execute();
@@ -29,7 +30,7 @@ class Kirja extends BaseModel{
         return $books;
     }
     
-    
+    //Yksi tietty kirja id:n perusteella
     public static function find($id){
         $query = DB::connection()->prepare('SELECT Kirja.*, AVG(Arvostelu.arvostelu) AS arvostelu FROM Kirja LEFT JOIN Arvostelu ON Kirja.id=Arvostelu.kirja_id WHERE id = :id GROUP BY Kirja.id LIMIT 1');
         $query->execute(array('id' => $id));
@@ -50,6 +51,7 @@ class Kirja extends BaseModel{
           
     }
     
+    //Kategorian kirjat
     public static function findFromCategory($id){
         $query = DB::connection()->prepare('SELECT Kirja.*, AVG(Arvostelu.arvostelu) AS arvostelu FROM Kirja LEFT JOIN Arvostelu ON Kirja.id=Arvostelu.kirja_id LEFT JOIN KirjaKategoria ON Kirja.id=KirjaKategoria.kirja_id WHERE KirjaKategoria.kategoria_id  = :id GROUP BY Kirja.id ORDER BY Kirja.nimi ASC');
         $query->execute(array('id' => $id));
@@ -70,6 +72,7 @@ class Kirja extends BaseModel{
         return $books;   
     }
     
+    //Käyttäjän arvostelemat kirjat
     public static function findUsersBooks($id){
         $query = DB::connection()->prepare('SELECT Kirja.* FROM Kirja INNER JOIN Arvostelu ON Kirja.id=Arvostelu.kirja_id WHERE Arvostelu.kayttaja_id = :id GROUP BY Kirja.id');
         $query->execute(array('id' => $id));
@@ -89,6 +92,7 @@ class Kirja extends BaseModel{
         return $books;   
     }
     
+    //Parhaiten arvostellut kirjat
     public static function bestRated(){
         $query = DB::connection()->prepare('SELECT Kirja.*, AVG(Arvostelu.arvostelu) AS arvostelu FROM Kirja LEFT JOIN Arvostelu ON Kirja.id=Arvostelu.kirja_id GROUP BY Kirja.id ORDER BY arvostelu DESC NULLS LAST');
         $query->execute();

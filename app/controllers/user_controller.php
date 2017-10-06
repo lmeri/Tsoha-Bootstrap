@@ -2,6 +2,7 @@
 
 class UserController extends BaseController{
     
+    //Käyttäjän arvostelemat kirjat
     public static function usersbooks() {
         self::check_logged_in();
         
@@ -17,10 +18,13 @@ class UserController extends BaseController{
         
     }
     
+    
+    //Kirjautumissivu
     public static function login() {
         View::make('User/login.html');
     }
     
+    //Kirjautumisen käsittely
     public static function handle_login() {
         $params = $_POST;
         
@@ -34,10 +38,12 @@ class UserController extends BaseController{
         }
     }
     
+    //Rekisteröintisivu
     public static function register() {
         View::make('User/register.html');
     }
     
+    //Rekisteröinnin käsittely
     public static function handle_register() {
         $params = $_POST;
         
@@ -64,11 +70,13 @@ class UserController extends BaseController{
         
     }
     
+    //Uloskirjautuminen
     public static function logout() {
         $_SESSION['user'] = null;
         Redirect::to('/login', array('message' => 'You have logged out!'));
     }
     
+    //Etusivu
     public static function index(){
         View::make('home.html');
     }

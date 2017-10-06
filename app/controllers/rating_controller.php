@@ -2,6 +2,7 @@
 
 class RatingController extends BaseController{
     
+    //Tallentaa käyttäjän arvosanan kirjalle
     public static function store($id) {
         self::check_logged_in();
         

@@ -30,5 +30,12 @@ Järjestelmän tarkoitus on toimia tietokantana kirjoille, sekä auttaa käyttä
 * [Top-lista](http://lome.users.cs.helsinki.fi/tsoha17/toplists)
 
 
+## Sovelluksen tunnukset
+Tunnus: testi
+Salasana: testi123
+
+Tunnus: admin
+Salasana: admin123
+
 ## Sovelluksesta
 * [Käytetyt kansikuvat](https://openlibrary.org/dev/docs/api/covers)

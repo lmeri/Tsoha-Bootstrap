@@ -8,6 +8,7 @@ class Arvostelu extends BaseModel{
         parent::__construct($attributes);
     }
     
+    //Tallenna arvostelu
     public function save() {
         $query = DB::connection()->prepare('INSERT INTO Arvostelu (kirja_id, kayttaja_id, arvostelu) VALUES (:kirja_id, :kayttaja_id, :arvostelu)');
         $query->execute(array(

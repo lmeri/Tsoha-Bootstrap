@@ -1,11 +1,14 @@
 <?php
 
 class BooksController extends BaseController{
+    
+    //Listaa kaikki kirjat
     public static function booklist(){
         $books = Kirja::all();
         View::make('Books/list_books.html', array('books' => $books)); 
     }
-
+    
+    //Etsii tietyn kategorian kirjat
     public static function categorybooks($id){
         $category = Kategoria::find($id);
         $books = Kirja::findFromCategory($id);
@@ -13,15 +16,16 @@ class BooksController extends BaseController{
             View::make('Categories/category_list.html', array('books' => $books, 'category' => $category));
         } else {
             Redirect::to('/category', array('error' => 'Kategoriaa ei löydy.'));
-        }
-         
+        }   
     }
     
+    //Parhaat arvosanat saaneet kirjat
     public static function bestbooks(){
         $books = Kirja::bestRated();
         View::make('Books/toplists.html', array('books' => $books));      
     }
     
+    //Kirjan lisäyssivu
     public static function add(){
         self::check_admin_logged_in();
         
@@ -29,6 +33,7 @@ class BooksController extends BaseController{
         View::make('Books/book_add.html', array('categories' => $categories));     
     }
     
+    //Kirjan tallennus tietokantaan
     public static function store(){
         self::check_admin_logged_in();
         
@@ -62,9 +67,9 @@ class BooksController extends BaseController{
         } else {
             View::make('Books/book_add.html', array('errors' => $errors, 'attributes' => $attributes));
         }
-    
     }
     
+    //Kirjan esittely
     public static function bookintro($id){
         $book = Kirja::find($id);
         $bookcategories = KirjaKategoria::findCategories($id);
@@ -74,6 +79,7 @@ class BooksController extends BaseController{
         View::make('Books/book_intro.html', array('book' => $book, 'bookcategories' => $bookcategories)); 
     }
     
+    //Kirjan poisto
     public static function destroy($id){
         self::check_admin_logged_in();
         
@@ -83,6 +89,7 @@ class BooksController extends BaseController{
         Redirect::to('/books', array('message' => 'Kirja on poistettu onnistuneesti!'));
     }
     
+    //Kirjan muokkaus
     public static function edit($id){
         self::check_admin_logged_in();
         
@@ -91,6 +98,7 @@ class BooksController extends BaseController{
         View::make('Books/book_edit.html', array('categories' => $categories, 'book' => $book));     
     }
     
+    //Kirjan tietokantakohteen muokkaus
     public static function update($id){
         self::check_admin_logged_in();
         

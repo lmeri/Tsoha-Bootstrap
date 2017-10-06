@@ -9,6 +9,7 @@ class Kategoria extends BaseModel{
         $this->validators = array('validate_category');
     }
     
+    //Kaikki kategoriat
     public static function all(){
         $query = DB::connection()->prepare('SELECT * FROM Kategoria');
         $query->execute();
@@ -24,7 +25,7 @@ class Kategoria extends BaseModel{
         return $categories;
     }
     
-    
+    //Yksi tietty kategoria id:n perusteella
     public static function find($id){
         $query = DB::connection()->prepare('SELECT * FROM Kategoria WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
