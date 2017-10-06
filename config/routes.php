@@ -63,8 +63,6 @@
     UserController::usersbooks();
   });
   
-  
-  
   $routes->post('/books/:id', function($id){
     RatingController::store($id);
   });

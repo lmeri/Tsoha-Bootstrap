@@ -31,11 +31,9 @@ Järjestelmän tarkoitus on toimia tietokantana kirjoille, sekä auttaa käyttä
 
 
 ## Sovelluksen tunnukset
-Tunnus: testi
-Salasana: testi123
+Tunnus/Salasana: testi/testi123
 
-Tunnus: admin
-Salasana: admin123
+Tunnus/Salasana: admin/admin123
 
 ## Sovelluksesta
 * [Käytetyt kansikuvat](https://openlibrary.org/dev/docs/api/covers)

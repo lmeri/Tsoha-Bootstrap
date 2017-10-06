@@ -18,7 +18,7 @@ class RatingController extends BaseController{
         
         $rating->save();
         
-        Redirect::to('/books', array('message' => 'Arvostelu lisätty!'));
+        Redirect::to('/books', array('message' => 'Your rating has been counted'));
     }
     
     

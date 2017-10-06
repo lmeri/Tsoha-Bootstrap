@@ -15,7 +15,7 @@ class BooksController extends BaseController{
         if ($category != NULL) {
             View::make('Categories/category_list.html', array('books' => $books, 'category' => $category));
         } else {
-            Redirect::to('/category', array('error' => 'Kategoriaa ei löydy.'));
+            Redirect::to('/category', array('error' => 'Category cannot be found.'));
         }   
     }
     
@@ -38,7 +38,7 @@ class BooksController extends BaseController{
         self::check_admin_logged_in();
         
         $params = $_POST;
-        
+        $categories = Kategoria::all();
         $attributes = array(
             'nimi' => $params['nimi'],
             'isbn' => $params['isbn'],
@@ -54,18 +54,18 @@ class BooksController extends BaseController{
             $book->save();
             
             try {
-            $categories = $params['categories'];
+                $categories = $params['categories'];
 
-            foreach ($categories as $category) {
-                $bc = new KirjaKategoria(array('kategoria_id' => $category, 'kirja_id' => $book->id));
-                $bc->save();
-            }
+                foreach ($categories as $category) {
+                    $bc = new KirjaKategoria(array('kategoria_id' => $category, 'kirja_id' => $book->id));
+                    $bc->save();
+                }
             } catch (Exception $ex) {
                 
             }
-            Redirect::to('/books/' . $book->id, array('message' => 'Kirja on lisätty kirjastoosi!'));
+            Redirect::to('/books/' . $book->id, array('message' => 'Book has been added!'));
         } else {
-            View::make('Books/book_add.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('Books/book_add.html', array('errors' => $errors, 'attributes' => $attributes, 'categories' => $categories));
         }
     }
     
@@ -86,7 +86,7 @@ class BooksController extends BaseController{
         $book = new Kirja(array('id' => $id));
         $book->destroy();
 
-        Redirect::to('/books', array('message' => 'Kirja on poistettu onnistuneesti!'));
+        Redirect::to('/books', array('message' => 'Book has been deleted!'));
     }
     
     //Kirjan muokkaus
@@ -131,7 +131,7 @@ class BooksController extends BaseController{
             }
 
 
-            Redirect::to('/books/' . $id, array('message' => 'Kirjaa on muokattu onnistuneesti!'));
+            Redirect::to('/books/' . $id, array('message' => 'Book has been edited!'));
         } else{
           View::make('Books/book_edit.html', array('errors' => $errors, 'attributes' => $attributes));
         }

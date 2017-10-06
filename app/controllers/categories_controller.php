@@ -30,7 +30,7 @@ class CategoriesController extends BaseController{
                 
         if (count($errors) == 0) {
             $category->save();
-            Redirect::to('/categories', array('message' => 'Kategoria on luotu!'));
+            Redirect::to('/categories', array('message' => 'Category has been created!'));
         } else {
             View::make('Categories/category_add.html', array('errors' => $errors, 'attributes' => $attributes));
         }
@@ -43,7 +43,7 @@ class CategoriesController extends BaseController{
         $category = new Kategoria(array('id' => $id));
         $category->destroy();
 
-        Redirect::to('/categories', array('message' => 'Kategoria on poistettu onnistuneesti!'));
+        Redirect::to('/categories', array('message' => 'Category has been deleted!'));
     }
     
     //Kategorian muokkaussivu
@@ -70,7 +70,7 @@ class CategoriesController extends BaseController{
         if(count($errors) == 0){
             $category->update($id);
 
-            Redirect::to('/categories/' . $id, array('message' => 'Kirjaa on muokattu onnistuneesti!'));
+            Redirect::to('/categories/' . $id, array('message' => 'Category has been edited'));
         } else{
             View::make('Categories/category_edit.html', array('errors' => $errors, 'attributes' => $attributes));
         }
