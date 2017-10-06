@@ -23,11 +23,15 @@ class BooksController extends BaseController{
     }
     
     public static function add(){
+        self::check_admin_logged_in();
+        
         $categories = Kategoria::all();
         View::make('Books/book_add.html', array('categories' => $categories));     
     }
     
     public static function store(){
+        self::check_admin_logged_in();
+        
         $params = $_POST;
         
         $attributes = array(
@@ -37,22 +41,29 @@ class BooksController extends BaseController{
             'vuosi' => $params['vuosi'],
             'kuvaus' => $params['kuvaus'] 
         );
-    $book = new Kirja($attributes);
-    
-    $errors = $book->errors();
-    
-    if (count($errors) == 0) {
-        $book->save();
-        $categories = $params['categories'];
+        $book = new Kirja($attributes);
 
-        foreach ($categories as $category) {
-            $bc = new KirjaKategoria(array('kategoria_id' => $category, 'kirja_id' => $book->id));
-            $bc->save();
+        $errors = $book->errors();
+
+        if (count($errors) == 0) {
+            $book->save();
+            
+            try {
+            $categories = $params['categories'];
+
+            foreach ($categories as $category) {
+                $bc = new KirjaKategoria(array('kategoria_id' => $category, 'kirja_id' => $book->id));
+                $bc->save();
+            }
+            } catch (Exception $ex) {
+                
+            }
+            Redirect::to('/books/' . $book->id, array('message' => 'Kirja on lisätty kirjastoosi!'));
+        } else {
+            View::make('Books/book_add.html', array('errors' => $errors, 'attributes' => $attributes));
         }
-        Redirect::to('/books/' . $book->id, array('message' => 'Kirja on lisätty kirjastoosi!'));
-    } else {
-        View::make('Books/book_add.html', array('errors' => $errors, 'attributes' => $attributes));
-    }}
+    
+    }
     
     public static function bookintro($id){
         $book = Kirja::find($id);
@@ -64,52 +75,58 @@ class BooksController extends BaseController{
     }
     
     public static function destroy($id){
-    $book = new Kirja(array('id' => $id));
-    $book->destroy();
+        self::check_admin_logged_in();
+        
+        $book = new Kirja(array('id' => $id));
+        $book->destroy();
 
-    Redirect::to('/books', array('message' => 'Kirja on poistettu onnistuneesti!'));
+        Redirect::to('/books', array('message' => 'Kirja on poistettu onnistuneesti!'));
     }
     
     public static function edit($id){
+        self::check_admin_logged_in();
+        
         $categories = Kategoria::all();
         $book = Kirja::find($id);
         View::make('Books/book_edit.html', array('categories' => $categories, 'book' => $book));     
     }
     
     public static function update($id){
-    $params = $_POST;
-
-    $attributes = array(
-        'nimi' => $params['nimi'],
-        'isbn' => $params['isbn'],
-        'kirjailija' => $params['kirjailija'],
-        'vuosi' => $params['vuosi'],
-        'kuvaus' => $params['kuvaus']
-    );
-
-    $book = new Kirja($attributes);
-    $errors = $book->errors();
-
-    if(count($errors) == 0){
-        $book->update($id);
-        KirjaKategoria::destroy($id);
+        self::check_admin_logged_in();
         
-        try {
-            $categories = $params['categories'];
+        $params = $_POST;
 
-            foreach ($categories as $category) {
-                $bc = new KirjaKategoria(array('kategoria_id' => $category, 'kirja_id' => $id));
-                $bc->save();
+        $attributes = array(
+            'nimi' => $params['nimi'],
+            'isbn' => $params['isbn'],
+            'kirjailija' => $params['kirjailija'],
+            'vuosi' => $params['vuosi'],
+            'kuvaus' => $params['kuvaus']
+        );
+
+        $book = new Kirja($attributes);
+        $errors = $book->errors();
+
+        if(count($errors) == 0){
+            $book->update($id);
+            KirjaKategoria::destroy($id);
+
+            try {
+                $categories = $params['categories'];
+
+                foreach ($categories as $category) {
+                    $bc = new KirjaKategoria(array('kategoria_id' => $category, 'kirja_id' => $id));
+                    $bc->save();
+                }
+            } catch (Exception $ex) {
+
             }
-        } catch (Exception $ex) {
 
+
+            Redirect::to('/books/' . $id, array('message' => 'Kirjaa on muokattu onnistuneesti!'));
+        } else{
+          View::make('Books/book_edit.html', array('errors' => $errors, 'attributes' => $attributes));
         }
-        
-        
-        Redirect::to('/books/' . $id, array('message' => 'Kirjaa on muokattu onnistuneesti!'));
-    } else{
-      View::make('Books/book_edit.html', array('errors' => $errors, 'attributes' => $attributes));
-    }
   }
     
     

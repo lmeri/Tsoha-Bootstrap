@@ -2,11 +2,7 @@
 
 
   $routes->get('/', function() {
-    HelloWorldController::index();
-  });
-
-  $routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
+    UserController::index();
   });
   
   $routes->post('/login', function() {
@@ -17,8 +13,16 @@
     UserController::login();
   });
   
+  $routes->post('/logout', function() {
+    UserController::logout();
+  });
+  
+  $routes->post('/register', function() {
+    UserController::handle_register();
+  });
+  
   $routes->get('/register', function() {
-    HelloWorldController::register();
+    UserController::register();
   });
   
 //Kirja reitit

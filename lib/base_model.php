@@ -47,7 +47,7 @@
         if($this->isbn == '' || $this->isbn == null){
             $errors[] = 'ISBN cannot be empty.';
         }
-        if(strlen($this->isbn) < 13 || ($this->isbn) > 13){
+        if(strlen($this->isbn) != 13){
             $errors[] = 'ISBN must be 13 characters.';
         }
         return $errors;
@@ -74,7 +74,7 @@
         if($this->vuosi == '' || $this->vuosi == null){
             $errors[] = 'Released cannot be empty.';
         }
-        if(strlen($this->vuosi) < 4 || ($this->vuosi) > 4 ){
+        if(strlen($this->vuosi) != 4){
             $errors[] = 'Release year must be 4 characters.';
         }
         return $errors;
@@ -103,6 +103,36 @@
         }
         if(strlen($this->nimi) > 20){
             $errors[] = 'Name must not be over 20 characters.';
+        }
+        return $errors;
+    }
+    
+    public function validate_username() {
+        $errors = array();
+        
+        if($this->tunnus == '' || $this->tunnus == null){
+            $errors[] = 'Username cannot be empty.';
+        }
+        if(strlen($this->tunnus) < 3){
+            $errors[] = 'Username must be at least 3 characters.';
+        }
+        if(strlen($this->tunnus) > 50){
+            $errors[] = 'Username must not be over 50 characters.';
+        }
+        return $errors;
+    }
+    
+    public function validate_password() {
+        $errors = array();
+        
+        if($this->salasana == '' || $this->salasana == null){
+            $errors[] = 'Password cannot be empty.';
+        }
+        if(strlen($this->salasana) < 5){
+            $errors[] = 'Password must be at least 5 characters.';
+        }
+        if(strlen($this->salasana) > 50){
+            $errors[] = 'Password must not be over 50 characters.';
         }
         return $errors;
     }

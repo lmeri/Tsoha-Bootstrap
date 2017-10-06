@@ -69,9 +69,11 @@
             {% endif %}
             
             {% if user_logged_in %}
+                <form class="navbar-form navbar-right" method="post" action="{{base_path}}/logout">
+                    <button type="submit" class="btn btn-link">Kirjaudu ulos</button>
+                </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/tsoha17/user/books">User's books</a></li>
-                    <li><a href="/tsoha17/logout">Logout</a></li>
                 </ul>
             {% else %}
                 <ul class="nav navbar-nav navbar-right">
@@ -98,6 +100,12 @@
                     <li>{{error}}</li>
                 {% endfor %}
             </ul>
+        </div>
+        {% endif %}
+        
+        {% if error %}
+        <div class="alert alert-danger">
+            {{error}}
         </div>
         {% endif %}
       {% block content %}{% endblock %}

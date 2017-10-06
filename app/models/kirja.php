@@ -113,8 +113,7 @@ class Kirja extends BaseModel{
         $query = DB::connection()->prepare('INSERT INTO Kirja (nimi, isbn, kirjailija, vuosi, kuvaus) VALUES (:nimi, :isbn, :kirjailija, :vuosi, :kuvaus) RETURNING id');
         $query->execute(array('nimi' => $this->nimi, 'isbn' => $this->isbn, 'kirjailija' => $this->kirjailija, 'vuosi' => $this->vuosi, 'kuvaus' => $this->kuvaus));
         $row = $query->fetch();
-        $this->id = $row['id'];
-         
+        $this->id = $row['id'];     
     }
     
     public function destroy(){
