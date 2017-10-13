@@ -17,6 +17,7 @@
     <li><strong>Writer:</strong> {{book.kirjailija}}</li>
     <li><strong>Released:</strong> {{book.vuosi}}</li>
     <li><strong>Users' rating:</strong> {{book.arvostelu}}</li>
+    <li><strong>{{user.tunnus}}'s rating:</strong> {{rating.arvostelu}}</li>
     <li><strong>Book's Categories:</strong> 
         {% for bc in bookcategories %}
         {{bc.kategoria_nimi}}

@@ -9,15 +9,20 @@ class RatingController extends BaseController{
         $params = $_POST;
         $book = $id;
         $kayttaja_id = self::get_user_logged_in()->id;
+        $arvostelu = $params['rating'];
         
         $rating = new Arvostelu(array(
         'kirja_id' => $book,
         'kayttaja_id' => $kayttaja_id,
-        'arvostelu' => $params['rating']
+        'arvostelu' => $arvostelu
         ));
         
-        $rating->save();
-        
+        if ($rating->find($book, $kayttaja_id)) {
+            $rating->update($book, $kayttaja_id);
+        } else {
+            $rating->save();
+        }
+
         Redirect::to('/books', array('message' => 'Your rating has been counted'));
     }
     

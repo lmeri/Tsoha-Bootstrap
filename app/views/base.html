@@ -40,7 +40,7 @@
             {% if user_logged_in.adminko %}
             <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
-            <li><a href="{{base_path}}">Etusivu</a></li>
+            <li><a href="{{base_path}}">Index</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Browse Books 
                 <span class="caret"></span></a>
@@ -55,7 +55,7 @@
             {% else %}
             <ul class="nav navbar-nav">
             <!-- Navigaation linkit -->
-            <li><a href="{{base_path}}">Etusivu</a></li>
+            <li><a href="{{base_path}}">Index</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Browse Books 
                 <span class="caret"></span></a>
@@ -70,7 +70,7 @@
             
             {% if user_logged_in %}
                 <form class="navbar-form navbar-right" method="post" action="{{base_path}}/logout">
-                    <button type="submit" class="btn btn-link">Kirjaudu ulos</button>
+                    <button type="submit" class="btn btn-link">Logout</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/tsoha17/user/books">User's books</a></li>

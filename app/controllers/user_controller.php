@@ -2,7 +2,8 @@
 
 class UserController extends BaseController{
     
-    //Käyttäjän arvostelemat kirjat
+    //Käyttäjän arvostelemat kirjat, jotka näkyvät omalla sivullaan.
+    
     public static function usersbooks() {
         self::check_logged_in();
         
@@ -14,11 +15,9 @@ class UserController extends BaseController{
             View::make('User/users_books.html', array('books' => $books));
         } catch (Exception $ex) {
             
-        }
-        
+        }  
     }
-    
-    
+
     //Kirjautumissivu
     public static function login() {
         View::make('User/login.html');
