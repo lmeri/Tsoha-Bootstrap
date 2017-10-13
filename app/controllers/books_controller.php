@@ -71,14 +71,28 @@ class BooksController extends BaseController{
     
     //Kirjan esittely
     public static function bookintro($id){
-        $user = self::get_user_logged_in();
         $book = Kirja::find($id);
         $bookcategories = KirjaKategoria::findCategories($id);
-        $rating = Arvostelu::findRating($book->id, $user->id);
+        $userid = null;
+        
+        try {
+            $user = self::get_user_logged_in();
+            $userid = $user->id;
+            $rating = Arvostelu::findRating($book->id, $userid);
+        } catch (Exception $ex) {
+
+        }
+        
         if ($bookcategories == NULL) {
             $bookcategories = "";
         }
-        View::make('Books/book_intro.html', array('book' => $book, 'bookcategories' => $bookcategories, 'user' => $user, 'rating' => $rating)); 
+        
+        if ($userid != null) {
+            View::make('Books/book_intro.html', array('book' => $book, 'bookcategories' => $bookcategories, 'user' => $user, 'rating' => $rating));
+        } else {
+            View::make('Books/book_intro.html', array('book' => $book, 'bookcategories' => $bookcategories));
+        }
+         
     }
     
     //Kirjan poisto
