@@ -17,6 +17,7 @@ class KirjaKategoria extends BaseModel{
         $row = $query->fetch();
     }
     
+    //Etsii ja palauttaa kirjaan liittyvät kategoriat kirjan id:n perusteella.
     public static function findCategories($id) {
         $query = DB::connection()->prepare('SELECT KirjaKategoria.*, Kategoria.nimi AS kategoria_nimi FROM KirjaKategoria INNER JOIN Kategoria ON KirjaKategoria.kategoria_id = Kategoria.id WHERE KirjaKategoria.kirja_id = :id');
         $query->execute(array('id' => $id));

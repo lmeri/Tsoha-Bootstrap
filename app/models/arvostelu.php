@@ -21,7 +21,6 @@ class Arvostelu extends BaseModel{
     
     //Palauttaa true, jos tietokannasta löytyy jo käyttäjän arvostelu 
     //tietylle kirjalle.
-    
     public static function find($id, $kayttaja_id) {
         $query = DB::connection()->prepare('SELECT Arvostelu.* FROM Arvostelu WHERE Arvostelu.kayttaja_id = :kayttaja_id AND Arvostelu.kirja_id = :id LIMIT 1');
         $query->execute(array('id' => $id, 'kayttaja_id' => $kayttaja_id));
@@ -34,7 +33,6 @@ class Arvostelu extends BaseModel{
     }
     
     //Etsii käyttäjän arvostelun kirjalle.
-    
     public static function findRating($id, $kayttaja_id) {
         $query = DB::connection()->prepare('SELECT Arvostelu.* FROM Arvostelu WHERE Arvostelu.kayttaja_id = :kayttaja_id AND Arvostelu.kirja_id = :id LIMIT 1');
         $query->execute(array('id' => $id, 'kayttaja_id' => $kayttaja_id));
